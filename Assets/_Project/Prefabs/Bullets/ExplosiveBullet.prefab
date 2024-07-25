@@ -153,8 +153,10 @@ MonoBehaviour:
   - {fileID: 2560038556704282042, guid: 5ce8a296fae8da34699df386c0775732, type: 3}
   - {fileID: 2560038556704282042, guid: 5ce8a296fae8da34699df386c0775732, type: 3}
   - {fileID: 2560038556704282042, guid: 5ce8a296fae8da34699df386c0775732, type: 3}
-  explosionDuration_: 0.6
-  explosionRadius_: 1
+  explosionDuration_: 0.3
+  explosionRadius_: 15
+  damageAmount_: 10
+  tag_: Enemy
 --- !u!114 &2978499118024258221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd6508cfcd76e249bdbc6c7ebcf1cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 1
 --- !u!114 &7509026755215910218
 MonoBehaviour:
   m_ObjectHideFlags: 0

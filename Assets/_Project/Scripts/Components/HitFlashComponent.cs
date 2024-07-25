@@ -16,10 +16,10 @@ namespace Game.Components {
 		}
 
 
-		private void OnEnable() => hurtBoxComponent_.HitByHitBox += Flash;
-		private void OnDisable() => hurtBoxComponent_.HitByHitBox -= Flash;
+		private void OnEnable() => hurtBoxComponent_.HealthComponent.Damaged += Flash;
+		private void OnDisable() => hurtBoxComponent_.HealthComponent.Damaged -= Flash;
 
-		private void Flash(HitBoxComponent hitBoxComponent) {
+		private void Flash(float damage) {
 			renderer_.material.DOColor(Color.red, 0.1f)
 				.OnComplete(() => renderer_.material.DOColor(originalColor_, 0.5f))
 				.SetEase(Ease.InOutQuad);

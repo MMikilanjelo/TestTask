@@ -8,7 +8,7 @@ namespace Game.Bullets {
 		[SerializeField] private int maxBounces_ = 3;
 		[SerializeField] private float bounceRadius_ = 10f;
 		[SerializeField] private float bouncingSpeedMultiplier_ = 3f;
-
+		[SerializeField] private string tag_ = "Enemy";
 		private int currentBounces_ = 0;
 		private VelocityComponent velocityComponent_;
 
@@ -31,7 +31,7 @@ namespace Game.Bullets {
 			var potentialTargets = new List<Collider>();
 
 			foreach (var hitCollider in hitColliders) {
-				if (hitCollider.CompareTag("Enemy") && hitCollider.gameObject != hurtBoxComponent.gameObject) {
+				if (hitCollider.CompareTag(tag_) && hitCollider.gameObject != hurtBoxComponent.gameObject) {
 					potentialTargets.Add(hitCollider);
 				}
 			}

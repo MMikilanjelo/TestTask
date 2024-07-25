@@ -1,3 +1,4 @@
+
 using System;
 using UnityEngine;
 
@@ -6,15 +7,20 @@ namespace Game.Components {
 
 		public event Action<HealthUpdate> HealthChanged;
 		public event Action Died;
-		public bool Damaged => currentHealth_ < maxHealth_;
+		public event Action<float> Damaged; 
+
 		public bool HasHealthRemaining => !Mathf.Approximately(currentHealth_, 0f);
+
 		private float maxHealth_ = 15.0f;
 		private float currentHealth_ = 15.0f;
+
 		public void Awake() => InitializeHealth(maxHealth_);
+
 		private void InitializeHealth(float maxHealth_) {
 			MaxHealth = maxHealth_;
 			CurrentHealth = MaxHealth;
 		}
+
 		public float MaxHealth {
 			get => maxHealth_;
 			private set {
@@ -24,6 +30,7 @@ namespace Game.Components {
 				}
 			}
 		}
+
 		public float CurrentHealth {
 			get => currentHealth_;
 			private set {
@@ -36,13 +43,21 @@ namespace Game.Components {
 				};
 
 				HealthChanged?.Invoke(healthUpdate);
+
 				if (!HasHealthRemaining) {
 					Died?.Invoke();
 				}
 			}
 		}
-		public void TakeDamage(float damage) => CurrentHealth -= damage;
+
+		public void TakeDamage(float damage) {
+			if (damage <= 0) return; // Avoid applying non-positive damage
+
+			CurrentHealth -= damage;
+			Damaged?.Invoke(damage); // Trigger the Damaged event
+		}
 	}
+
 	public class HealthUpdate {
 		public float MaxHealth;
 		public float CurrentHealth;
