@@ -51,5 +51,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "TestTask.sln"
+    "dotnet.defaultSolution": "TestTask.sln",
+    "cSpell.words": [
+        "Gameplay"
+    ]
 }
